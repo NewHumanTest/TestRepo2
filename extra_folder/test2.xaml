@@ -1,0 +1,38 @@
+<Activity mc:Ignorable="sap2010" x:Class="Main"
+          mva:VisualBasic.Settings="Assembly references and imported namespaces serialized for workflow"
+          xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+          xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+          xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+          xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+          xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+          xmlns:s="clr-namespace:System;assembly=mscorlib"
+          xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
+          xmlns:ui="http://schemas.uipath.com/workflow/activities"
+          xmlns:ui1="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="apiResponse" Type="InArgument(x:Object)" />
+  </x:Members>
+  <ui:HttpStatusCodeHandlerBase.TypeMetadata>
+    <sco:Collection x:TypeArguments="sco:String">
+      <s>HttpResponseMessage</s>
+    </sco:Collection>
+  </ui:HttpStatusCodeHandlerBase.TypeMetadata>
+  <ui:HttpStatusCodeHandlerBase.TypeName>
+    <x:String>UiPath.Web.HttpResponseMessage</x:String>
+  </ui:HttpStatusCodeHandlerBase.TypeName>
+  <ui:HttpStatusCodeHandlerBase.TypeAssemblyName>
+    <x:String>UiPath.Web</x:String>
+  </ui:HttpStatusCodeHandlerBase.TypeAssemblyName>
+  <sap2010:WorkflowViewState.IdRef>
+    Main_1
+  </sap2010:WorkflowViewState.IdRef>
+  <sap2010:NativeActivityMetadata.Annotation>
+    <s:String>Get GitHub Repositories</s:String>
+  </sap2010:NativeActivityMetadata.Annotation>
+  <ui:HttpRequest DisplayName="HTTP Request" Endpoint="https://api.github.com/users/username/repos" Method="GET" ResponseContent="Text" ResponseStatusCode="Ok" SavedResponses="{x:Null}" UnauthenticatedResponseStatusCode="Unauthorized" UserPassword="{x:Null}" />
+  <ui:DeserializeJson DisplayName="Deserialize JSON" JsonString="{x:Null}" Result="{x:Null}" />
+  <ui:For DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach_1" sap2010:Type.Arguments="x:Object" sap2010:Collection.Collection="[jsonArray]" sap2010:Collection.Variable="jsonArray" sap2010:VariableArgument="item" />
+</Activity>
